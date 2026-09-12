@@ -13,20 +13,20 @@ class Solution {
 public:
     int res = -1;
 
-    int func(TreeNode* root){
-        if(root == nullptr)
-            return 0;
-        int left = func(root->left);
-        int right = func(root->right);
-        
-        int sum = left + right;
+        int calcHeight(TreeNode* root){
+            if(root == nullptr)
+                return 0;
 
-        res  = max(res,sum);
-        return 1 + max(left,right);
-    }
+           int left = calcHeight(root->left);
+           int right = calcHeight(root->right);
+
+            int sum = left + right;
+
+            res = max(res,sum);
+            return 1 + max(left,right);
+        }
     int diameterOfBinaryTree(TreeNode* root) {
-        func(root);
+        calcHeight(root);
         return res;
-        
     }
 };
