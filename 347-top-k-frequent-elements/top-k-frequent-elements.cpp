@@ -1,14 +1,5 @@
 class Solution {
 public:
-    
-    struct cmp{
-        bool operator()(pair<int,int>&a,pair<int,int>&b){
-            if(a.first != b.first)
-                return a.first>b.first;//min heap behaviour 
-
-            return a.second>b.second;
-        }
-    };
     vector<int> topKFrequent(vector<int>& nums, int k) {
         unordered_map<int,int>mp;
 
@@ -16,7 +7,7 @@ public:
             mp[num]++;
 
 
-        priority_queue<pair<int,int>,vector<pair<int,int>>,cmp>pq;
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
 
         for(auto i : mp){
             pq.push({i.second,i.first});
